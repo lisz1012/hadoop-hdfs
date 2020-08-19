@@ -3,3 +3,6 @@ return Math.max(minSize, Math.min(maxSize, blockSize));
 其中minSize和maxSize可由用户设置
 当blockSize位于minSize和maxSize之间的时候就返回blockSize，blockSize大于maxSize的时候就是maxSize，blockSize小于minSize的时候就是
 minSize
+
+客户端并不计算，只是进行一堆预先设置并获取块的元信息
+还没做计算之前客户端就已经知道有多少个split（map任务）以及计算都要移动到哪里去
