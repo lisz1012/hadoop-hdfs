@@ -16,7 +16,7 @@ import org.apache.hadoop.util.GenericOptionsParser;
 // inpath outpath是命令自己需要的属性。所以在args中可以见到全局的blocksize，和与框架无关的inpath outpath之类的参数。作为
 // 人的复杂度：自己分析agrs数组
 // https://hadoop.apache.org/docs/r2.10.0/hadoop-mapreduce-client/hadoop-mapreduce-client-core/mapred-default.xml
-// 中提到的参数的操作见 org.apache.hadoop.mapreduce.MRJobConfig
+// 中提到的参数的操作见 org.apache.hadoop.mapreduce.MRJobConfig 也就是说-D 后面可以接这些变量名
 public class MyWorldCount {
 	public static void main(String[] args) throws Exception{
 		// 默认加载编译完了之后的目录下的各个xml配置文件

@@ -1,0 +1,5 @@
+splitSize默认等于blockSize的那一句写得好：
+return Math.max(minSize, Math.min(maxSize, blockSize));
+其中minSize和maxSize可由用户设置
+当blockSize位于minSize和maxSize之间的时候就返回blockSize，blockSize大于maxSize的时候就是maxSize，blockSize小于minSize的时候就是
+minSize
