@@ -32,7 +32,7 @@ public class MyWorldCount {
 		conf.set("mapreduce.framework.name", "local");
 		System.out.println(conf.get("mapreduce.framework.name"));*/
 		Job job = Job.getInstance(conf);
-		// 客户端会上传这个指定了的jar包，然后集群就会去下载放到classpath，然后就可以找到MyMapper和MyReducer类了
+		// 客户端会上传这个指定了的jar包，然后集群就会去下载放到classpath，然后就可以找到MyMapper和MyReducer类了。本地触发，发送到集群运行的时候需要这一句
 		job.setJar("/Users/shuzheng/IdeaProjects/hadoop-hdfs/target/hadoop-hdfs-1.0-SNAPSHOT.jar");
 		// 必须写，自己这个类. 反推这个类归属于哪个Jar包
 		job.setJarByClass(MyWorldCount.class);
