@@ -15,7 +15,15 @@ public class MyWorldCount {
 	public static void main(String[] args) throws Exception{
 		// 默认加载编译完了之后的目录下的各个xml配置文件
 		Configuration conf = new Configuration(true);
+		// 让框架知道是异构平台运行, 以不传Jar包的方式直接运行main方法的时候用这一句
+		conf.set("mapreduce.app-submission.cross-platform", "true");
+		// 单机运行， 此时不写下面job.setJar那一句
+		/*System.out.println(conf.get("mapreduce.framework.name"));
+		conf.set("mapreduce.framework.name", "local");
+		System.out.println(conf.get("mapreduce.framework.name"));*/
 		Job job = Job.getInstance(conf);
+		// 客户端会上传这个指定了的jar包，然后集群就会去下载放到classpath，然后就可以找到MyMapper和MyReducer类了
+		job.setJar("/Users/shuzheng/IdeaProjects/hadoop-hdfs/target/hadoop-hdfs-1.0-SNAPSHOT.jar");
 		// 必须写，自己这个类. 反推这个类归属于哪个Jar包
 		job.setJarByClass(MyWorldCount.class);
 		job.setJobName("myJob");
