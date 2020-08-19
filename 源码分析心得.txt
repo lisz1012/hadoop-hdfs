@@ -6,3 +6,16 @@ minSize
 
 客户端并不计算，只是进行一堆预先设置并获取块的元信息
 还没做计算之前客户端就已经知道有多少个split（map任务）以及计算都要移动到哪里去
+
+偏移量是面向整个文件来说的
+
+
+切片清单要上传到hdfsAPPMaster才能拿着它去RM申请split所在的机器，申请资源
+T[] array = (T[]) splits.toArray(new InputSplit[splits.size()]);
+...
+JobSplitWriter.createSplitFiles(jobSubmitDir, conf,
+        jobSubmitDir.getFileSystem(conf), array);
+
+
+CPU密集型一般把切片调小一点，更多的Mapper，利用多机的优势；IO密集型就把split调大，要求一次计算的数据更多更精准。切片是为了解耦存储层和计算层，
+否则后续计算只能按照块计算，并行度就不能调整了
