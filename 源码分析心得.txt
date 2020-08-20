@@ -1,8 +1,20 @@
+注2.x之后，关心代码中新的API相关的
+
+常识1：看某个方法的代码的时候，现纵览一遍，重点看一下try block（可以跳着看），一些重要的方法或者调用，都在里面
+常识2：框架里面，context这种东西是不可缺少的，因为总是从一些功能模块之间穿梭，有很多对象要写作，很多对象要集成在context中贯穿
+常识3：某个方法的实现，先去看最具体的子类的实现，如果没发现，则去父类一层层寻找
+
+客户端会上传生成的xml配置文件、Jar和split信息到hdfs计算的时候会去下载
+
 splitSize默认等于blockSize的那一句写得好：
 return Math.max(minSize, Math.min(maxSize, blockSize));
 其中minSize和maxSize可由用户设置
 当blockSize位于minSize和maxSize之间的时候就返回blockSize，blockSize大于maxSize的时候就是maxSize，blockSize小于minSize的时候就是
 minSize
+
+哈希返回应该去的reducer：
+return (key.hashCode() & Integer.MAX_VALUE) % numReduceTasks;
+相同的key去到同一个分区（reducer）
 
 客户端并不计算，只是进行一堆预先设置并获取块的元信息
 还没做计算之前客户端就已经知道有多少个split（map任务）以及计算都要移动到哪里去
@@ -19,3 +31,9 @@ JobSplitWriter.createSplitFiles(jobSubmitDir, conf,
 
 CPU密集型一般把切片调小一点，更多的Mapper，利用多机的优势；IO密集型就把split调大，要求一次计算的数据更多更精准。切片是为了解耦存储层和计算层，
 否则后续计算只能按照块计算，并行度就不能调整了
+
+抽象类Mapper会反射调用public void run(final JobConf job, final TaskUmbilicalProtocol umbilical)
+
+双击shift查看MapTask中的runNewMapper，其中的try部分调用了Mapper的run方法
+
+费曼学习法
