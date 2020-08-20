@@ -16,6 +16,7 @@ public class MyMapper extends Mapper<Object, Text, Text, IntWritable> {
 	// 可以写成成员变量，这是因为：context.write(word, one);这里每次执行都是拿着word和one为模版做序列化
 	// 每次序列化出来的字节数组都是新的，互不影响，map后面有一个基于内存的buffer，是一个字节数组
 	// 写在这里不用每次都new，这时候性能就节省下来了，不会对GC造成压力
+	// 见MapTask的1156行：keySerializer.serialize(key);
 	private final static IntWritable ONE = new IntWritable(1);
     private Text word = new Text();
 
