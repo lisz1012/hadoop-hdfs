@@ -37,3 +37,14 @@ CPU密集型一般把切片调小一点，更多的Mapper，利用多机的优�
 双击shift查看MapTask中的runNewMapper，其中的try部分调用了Mapper的run方法
 
 费曼学习法
+
+80%满了之后写到磁盘之前做排序和combine
+
+在环形缓冲区的字节数组中交换真实的KV的时候，由于他们都是有长度的，而且不是一个固定的长度，所以交换起来很困难，这是可以只是互换各自index那16bytes
+就好了
+
+环形缓冲区中的数据和索引始终沿着各自的方向不变的增长，初始时都是背靠背增长
+
+map reduce怎么跑、效率完全取决于Reduce的输入的Key的设计，key可以设计得很饱满，value没有值都可以
+
+minSpillsForCombine = 3是说：溢写了3次或者3次以上都会触发combine
