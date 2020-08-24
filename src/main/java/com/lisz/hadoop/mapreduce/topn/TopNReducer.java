@@ -21,7 +21,8 @@ public class TopNReducer extends Reducer<TopNKey, IntWritable, Text, IntWritable
       nextKeyValue();
     }
     是为了在Reducer.run中调用nextKey()的时候，通过 nextKeyIsSame为true，迅速跳到下一个而不做任何事情空转，什么时候!hasMore或者
-    !nextKeyIsSame了，才返回true（或者false），使得继续执行。第一组的reduce方法返回之后，有可能空转，然后再进入第二组的reduce方法
+    !nextKeyIsSame了，才返回true（或者false），使得继续执行。第一组的reduce方法返回之后，有可能空转，然后再进入第二组的reduce方法。
+    相当于是在外层的while循环的循环条件方法里放空，然后到该读的地方继续读取
 	 */
 	@Override
 	protected void reduce(TopNKey key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
