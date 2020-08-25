@@ -5,7 +5,6 @@ import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
-import org.apache.hadoop.mapreduce.filecache.DistributedCache;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -31,7 +30,7 @@ public class TopNMapper extends Mapper<LongWritable, Text, TopNKey, IntWritable>
 	protected void setup(Context context) throws IOException, InterruptedException {
 		//DistributedCache.getLocalCacheArchives()
 		URI[] cacheFiles = context.getCacheFiles();
-		Path path = new Path(cacheFiles[0].getPath());
+		Path path = new Path(cacheFiles[0].getPath()); // cacheFiles[0].getPath() 是/data/input/dict.txt，不能直接用
 		BufferedReader br = new BufferedReader((new FileReader(path.getName()))); // 框架把cacheFile放到本地的
 		String line = null;
 		while ((line = br.readLine()) != null) {
