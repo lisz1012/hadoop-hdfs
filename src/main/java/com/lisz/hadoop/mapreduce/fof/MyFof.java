@@ -32,8 +32,8 @@ public class MyFof {
 		// job.setNumReduceTasks(0); //没有reduce了，只看map输出，不看reduce输出
 
 		//job.setGroupingComparatorClass();// 就是按照默认的key：两个人的名字排序后的组合，所以不用分组比较器
-		//job.setReducerClass(FofReducer.class);
-		job.setReducerClass(CommonFriendReducer.class);
+		job.setReducerClass(FofReducer.class);
+		//job.setReducerClass(CommonFriendReducer.class);
 
 		job.waitForCompletion(true);
 	}
