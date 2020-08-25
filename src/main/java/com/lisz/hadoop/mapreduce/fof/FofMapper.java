@@ -19,12 +19,12 @@ public class FofMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
 		String myself = strs[0];
 		for (int i = 1; i < strs.length; i++) {
 			names.set(getKeyForNames(myself, strs[i]));
-			context.write(names, ZERO);
+			context.write(names, ZERO); // 已经加为好友，用0来标识
 		}
 		for (int i = 1; i < strs.length - 1; i++) {
 			for(int j = i + 1; j < strs.length; j++) {
 				names.set(getKeyForNames(strs[i], strs[j]));
-				context.write(names, ONE);
+				context.write(names, ONE); // strs[i]和strs[j]都在strs[0]的好友列表里面，所以他们有共同好友，可能是潜在的推荐对象（也可能已经是好友）
 			}
 		}
 	}
