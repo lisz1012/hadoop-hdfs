@@ -17,16 +17,23 @@ public class FofMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
 	protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
 		String[] strs = value.toString().split("\\s+");
 		String myself = strs[0];
-		Arrays.sort(strs);
-		for (int i = 0; i < strs.length - 1; i++) {
+		for (int i = 1; i < strs.length; i++) {
+			names.set(getKeyForNames(myself, strs[i]));
+			context.write(names, ZERO);
+		}
+		for (int i = 1; i < strs.length - 1; i++) {
 			for(int j = i + 1; j < strs.length; j++) {
-				names.set(strs[i] + " " + strs[j]);
-				if (myself.equals(strs[i]) || myself.equals(strs[j])) {
-					context.write(names, ZERO);
-				} else {
-					context.write(names, ONE);
-				}
+				names.set(getKeyForNames(strs[i], strs[j]));
+				context.write(names, ONE);
 			}
+		}
+	}
+
+	private String getKeyForNames(String s1, String s2) {
+		if (s1.compareTo(s2) < 0) {
+			return s1 + " " + s2;
+		} else {
+			return s2 + " " + s1;
 		}
 	}
 }
