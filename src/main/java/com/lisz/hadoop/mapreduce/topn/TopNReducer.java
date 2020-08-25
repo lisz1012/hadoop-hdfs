@@ -40,7 +40,7 @@ public class TopNReducer extends Reducer<TopNKey, IntWritable, Text, IntWritable
 	}
 
 	private void writeResult(Context context, TopNKey key) throws IOException, InterruptedException {
-		text.set(key.getYear() + "-" + key.getMonth() + "-" + key.getDay());
+		text.set(key.getYear() + "-" + key.getMonth() + "-" + key.getDay() + "-" + key.getLocation());
 		intWritable.set(key.getTemperature());
 		context.write(text, intWritable);
 	}
