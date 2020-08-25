@@ -54,3 +54,7 @@ MySQL，不断写和执行查询，冷程序相当于用的时候现启动MySQL�
 专用还是通用
 
 大数据里面经常用迭代器Iterator模式，为的是解决内存溢出的问题
+
+ReduceContextImpl 在 nextKey()里面调用nextKeyValue()用的很巧妙、艺术
+
+Reduce是按照key一组一组的计算的，所以分组比较器也比较重要
