@@ -57,4 +57,4 @@ MySQL，不断写和执行查询，冷程序相当于用的时候现启动MySQL�
 
 ReduceContextImpl 在 nextKey()里面调用nextKeyValue()用的很巧妙、艺术
 
-Reduce是按照key一组一组的计算的，所以分组比较器也比较重要
+Reduce是按照key一组一组的计算的，所以分组比较器也比较重要.
