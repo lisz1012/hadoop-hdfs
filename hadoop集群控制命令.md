@@ -61,4 +61,4 @@
 查看namenode的log，datanode同理  
 
 ```hadoop jar hadoop-mapreduce-examples-2.10.0.jar wordcount /data/wc/input /data/wc/output```  
-把hadoop的例子程序跑起来。这里要先执行```cd /opt/bigdata/hadoop-2.10.0/share/hadoop/mapreduce```  
+把hadoop的例子程序跑起来。这里要先执行```cd $HADOOP_HOME/share/hadoop/mapreduce```  
