@@ -51,5 +51,11 @@
 ```hadoop-daemons.sh stop tasktracker```  
 单独启动TaskTracker守护进程  
 
+```start-yarn.sh```  
+启动yarn，注意以上命令只能启动NodeManager，ResourceManager要用以下命令，在每台RM上单独执行启动ResourceManager进程  
+
 ```yarn-daemon.sh start resourcemanager```  
-启动yarn的resourcemanager
+启动yarn的resourcemanager  
+
+```less /opt/bigdata/hadoop-2.10.0/logs/hadoop-root-namenode-hadoop-01.log```  
+查看namenode的log，datanode同理  
