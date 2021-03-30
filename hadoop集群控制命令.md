@@ -30,6 +30,9 @@
 ```hadoop-daemons.sh stop secondarynamenode```  
 单独停止SecondaryNameNode守护进程  
 
+``` hadoop-daemon.sh start zkfc```
+启动ZKFC  
+
 ```start-mapred.sh```  
 启动Hadoop MapReduce守护进程JobTracker和TaskTracker  
 
@@ -47,3 +50,6 @@
 
 ```hadoop-daemons.sh stop tasktracker```  
 单独启动TaskTracker守护进程  
+
+```yarn-daemon.sh start resourcemanager```  
+启动yarn的resourcemanager
