@@ -57,8 +57,13 @@
 ```yarn-daemon.sh start resourcemanager```  
 启动yarn的resourcemanager  
 
+```yarn-daemon.sh stop resourcemanager```  
+停止yarn的resourcemanager  
+
 ```less /opt/bigdata/hadoop-2.10.0/logs/hadoop-root-namenode-hadoop-01.log```  
 查看namenode的log，datanode同理  
 
 ```hadoop jar hadoop-mapreduce-examples-2.10.0.jar wordcount /data/wc/input /data/wc/output```  
 把hadoop的例子程序跑起来。这里要先执行```cd $HADOOP_HOME/share/hadoop/mapreduce```  
+
+https://www.cnblogs.com/jun1019/p/6266615.html
