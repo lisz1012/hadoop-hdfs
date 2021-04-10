@@ -63,6 +63,13 @@
 ```less /opt/bigdata/hadoop-2.10.0/logs/hadoop-root-namenode-hadoop-01.log```  
 查看namenode的log，datanode同理  
 
+
+```zkServer.sh start```    
+启动zookeeper集群
+
+```zkServer.sh stop```  
+停止zookeeper集群
+
 ```hadoop jar hadoop-mapreduce-examples-2.10.0.jar wordcount /data/wc/input /data/wc/output```  
 把hadoop的例子程序跑起来。这里要先执行```cd $HADOOP_HOME/share/hadoop/mapreduce```  
 
